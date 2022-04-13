@@ -1,0 +1,177 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+
+$blue50: #4589FF;
+$blue60: #0F62FE;
+$gray10: #F4F4F4;
+$gray60: #736F6F;
+
+*, 
+*:after, 
+*:before {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    list-style: none;
+}
+
+html {
+    font-size: 62.5%;
+}
+
+body {
+    background-color: $gray10;
+    font-family: 'Open Sans', sans-serif;
+    min-height: 100vh;
+}
+
+.nav {
+    padding: 15px 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #fff;
+    margin-bottom: 10px;
+
+    &__icon {
+        display: grid;
+        place-content: center;
+        font-size: 2.5rem;
+        color: $blue50;
+        cursor: pointer;
+    }
+
+    &__logo {
+        font-size: 2.4rem;
+        text-transform: capitalize;
+    }
+}
+
+.btns-tab {
+    padding: 15px 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 15px;
+
+    .tab {
+        padding: 8px 12px;
+        border: 1px solid $blue60;
+        border-radius: 25px;
+        font-size: 1.4rem;
+        font-weight: bold;
+        color: $blue60;
+        cursor: pointer;
+    }
+}
+
+.task-box {
+    padding: 0 10px;
+}
+
+.task {
+    width: 100%;
+    height: 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fff;
+    box-shadow: 10px 10px 15px -3px rgba(0,0,0,0.2);
+    padding: 4px 20px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+
+    &__name {
+        font-size: 1.7rem;
+        font-weight: bold;
+    }
+
+    &__time {
+        font-size: 1.3rem;
+        margin-top: 6px;
+    }
+}
+
+.task-btn {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+
+    .task__status {
+        width: 20px;
+        height: 20px;
+    }
+
+    .settings {
+        height: 20px;
+        width: 20px;
+        display: grid;
+        font-size: 2rem;
+        cursor: pointer;
+    }
+}
+
+.fixed-menu {
+    width: 100%;
+    height: 60px;
+    padding: 10px 0px;
+    position: fixed;
+    background-color: #ffffff;
+    left: 0;
+    bottom: 0;
+
+    .menu {
+        height: 100%;
+        display: grid;
+        grid-auto-flow: column;
+        
+        &__item {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            cursor: pointer;
+
+            &-span {
+                font-size: 1.3rem;
+            }
+
+            &-icon {
+                font-size: 2.2rem;
+                color: $gray60;
+            }
+        }
+    }
+
+    .plus {
+        display: flex;
+        justify-content: center;
+        cursor: pointer;
+
+        &-circle {
+            display: grid;
+            place-content: center;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            background-color: $blue50;
+
+            i {
+                color: #fff;
+                font-size: 2.6rem;
+            }
+        }
+    }
+}
+
+// Active classes
+
+.menu__item.active i,
+.menu__item.active {
+    color: $blue60;
+}
+
+.tab.active {
+    background-color: $blue60;
+    color: #fff;
+}

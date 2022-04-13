@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/main.css">
+    <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
+    <title>Task APP</title>
+</head>
+<body>
+    <nav id="nav" class="nav">
+        <p class="nav__logo">TaskApp</p>
+        <div class="nav__icon">
+            <i class='bx bxs-bell'></i>
+        </div>
+    </nav>
+    <main>
+        <div class="btns-tab">
+            <div class="tab active">To-Do</div>
+            <div class="tab">In Progress</div>
+            <div class="tab">Completed</div>
+        </div>
+        <div class="task-box">
+            <div class="task">
+                <div class="task-info">
+                    <p class="task__name">Meeting with client</p>
+                    <p class="task__time">Today - 12:00 PM</p>
+                </div>
+                <div class="task-btn">
+                    <input type="checkbox" id="task-status" class="task__status">
+                    <div class="settings">
+                        <i class='bx bx-dots-vertical-rounded'></i>
+                    </div>
+                </div>
+            </div>
+            <div class="task">
+                <div class="task-info">
+                    <p class="task__name">Meeting with client</p>
+                    <p class="task__time">Today - 12:00 PM</p>
+                </div>
+                <div class="task-btn">
+                    <input type="checkbox" id="task-status" class="task__status">
+                    <div class="settings">
+                        <i class='bx bx-dots-vertical-rounded'></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <div class="fixed-menu">
+        <ul class="menu">
+            <li class="menu__item active">
+                <i class='bx bxs-home menu__item-icon'></i>
+                <span class="menu__item-span">Home</span>
+            </li>
+            <li class="plus" id="add-btn">
+                <div class="plus-circle">
+                    <i class='bx bx-plus'></i>
+                </div>
+            </li>
+            <li class="menu__item">
+                <i class='bx bx-receipt menu__item-icon'></i>
+                <span class="menu__item-span">Project</span>
+            </li>
+        </ul>
+    </div>
+
+    <div class="modal">
+    </div>
+    <script src="/javascript/app.js"></script>
+</body>
+</html>
