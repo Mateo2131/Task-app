@@ -57,9 +57,6 @@ body {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
   margin-bottom: 15px;
 }
 
@@ -71,10 +68,12 @@ body {
   font-weight: bold;
   color: #0F62FE;
   cursor: pointer;
+  margin-right: 15px;
 }
 
 .task-box {
   padding: 0 10px;
+  margin-bottom: 100px;
 }
 
 .task {
@@ -197,6 +196,63 @@ body {
 .fixed-menu .plus-circle i {
   color: #fff;
   font-size: 2.6rem;
+}
+
+.modal {
+  display: block;
+  width: 100%;
+  padding: 15px 18px;
+  background-color: #ffffff;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  position: fixed;
+  bottom: 0;
+}
+
+.modal__title {
+  margin: 20px 0;
+  padding-bottom: 14px;
+  font-size: 1.8rem;
+  text-align: center;
+  font-weight: bold;
+  border-bottom: 1px solid #736F6F;
+}
+
+.modal__form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-bottom: 40px;
+  gap: 15px;
+}
+
+.modal__btn {
+  padding: 10px;
+  width: 100%;
+  max-width: 300px;
+  font-size: 1.5rem;
+  background-color: #F4F4F4;
+  border: none;
+  border-radius: 4px;
+  outline-color: #4589FF;
+}
+
+.modal__button {
+  height: 45px;
+  width: 100%;
+  max-width: 300px;
+  border-radius: 16px;
+  border: none;
+  background-color: #0F62FE;
+  font-size: 1.8rem;
+  color: #ffffff;
 }
 
 .menu__item.active i,
