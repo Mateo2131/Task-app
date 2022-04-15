@@ -68,6 +68,12 @@ body {
 .task-box {
     padding: 0 10px;
     margin-bottom: 100px;
+
+    .default-text {
+        font-size: 2rem;
+        font-weight: bold;
+        text-align: center;
+    }
 }
 
 .task {

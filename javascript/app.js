@@ -1,9 +1,27 @@
 const taskBox = document.querySelector('.task-box');
 const newTaskBtn = document.getElementById('add-btn');
+const todoBtn = document.getElementById('todo-btn');
+const completedBtn = document.getElementById('completed-btn');
+const allBtn = document.getElementById('all-btn');
 
 newTaskBtn.addEventListener('click', () => {
     modal();
     createTask();
+});
+
+todoBtn.addEventListener('click', () => {
+    const tasks = showTasks('todo');
+    taskBox.innerHTML = tasks;
+});
+
+completedBtn.addEventListener('click', () => {
+    const tasks = showTasks('completed');
+    taskBox.innerHTML = tasks;
+});
+
+allBtn.addEventListener('click', () => {
+    const tasks = showTasks('all');
+    taskBox.innerHTML = tasks;
 });
 
 function modal() {
@@ -17,69 +35,129 @@ function modal() {
             <input type="text" class="modal__btn" id="name" placeholder="Task name">
             <input type="date" class="modal__btn" id="date">
             <button type="button" class="modal__button" id="create-btn">Create</button>
-        </form>`
-
+        </form>`;
     document.body.insertAdjacentElement('beforeend', modal)
 };
 
 function createTask() {
-    const createBtn = document.getElementById('create-btn');
 
-    createBtn.addEventListener('click', () => {
-        const task = getFormData();
-        if (task) {
-            storeTask(task);
-            let elem = document.createElement('div');
-            elem.classList.add('task');
-            elem.innerHTML = `
-            <div class="task-info">
-                    <p class="task__name">${task.name}</p>
-                    <p class="task__time">${task.date}</p>
-                </div>
-                <div class="task-btn">
-                    <input type="checkbox" id="task-status" class="task__status">
-                <div class="settings">
-                    <i class='bx bx-dots-vertical-rounded'></i>
-                </div>
-            </div>`;
+    document.getElementById('create-btn').addEventListener('click', saveTask);
 
-            taskBox.append(elem);
-            document.body.removeChild(document.querySelector('.modal'));
-        };
-    });
-
-    function getFormData() {
+    function saveTask(e) {
         const name = document.getElementById('name').value;
         const date = document.getElementById('date').value;
 
-        if (name !== '' && date !== '') {
-            return {
-                id: Math.floor(Math.random() * 1000),
-                name: name,
-                date: date,
-                status: 'todo',
-            };
+        const task = {
+            id: `${Math.floor(Math.random() * 1000)}`,
+            name,
+            date,
+            status: 'todo'
         };
+
+        if (!localStorage.getItem('tasks')) {
+            let tasks = [];
+            tasks.push(task);
+            localStorage.setItem('tasks', JSON.stringify(tasks));
+        } else {
+            let tasks = JSON.parse(localStorage.getItem('tasks'));
+            tasks.push(task);
+            localStorage.setItem('tasks', JSON.stringify(tasks));
+        };
+
+        document.body.removeChild(document.querySelector('.modal'));
+
+        getTasks();
+        e.preventDefault();
     };
 
-    function storeTask(task) {
-        let taskStorage = JSON.parse(localStorage.getItem('tasks'));
-        let obj = [];
+    function getTasks() {
+        let tasks = JSON.parse(localStorage.getItem('tasks'));
+        let elem = '';
 
-        obj.push(task);
+        tasks.forEach((task) => {
+            elem += `
+            <div class="task" data-id="${task.id}">
+            <div class="task-info">
+                <p class="task__name">${task.name}</p>
+                <p class="task__time">${task.date}</p>
+            </div>
+            <div class="task-btn">
+                <input onclick="updateStatus(this)" type="checkbox" id="task-status" class="task__status">
+                <div class="settings" onclick="deleteTask(this)">
+                    <i class='bx bxs-trash-alt' ></i>
+                </div>
+            </div>
+        </div>`;
+        });
 
-        if (taskStorage) {
-            for (i = 0; i < taskStorage.length; i++) {
-                obj.push({
-                    id: taskStorage[i].id,
-                    name: taskStorage[i].name,
-                    date: taskStorage[i].date,
-                    status: taskStorage[i].status,
-                });
-            };
-        };
-        
-        console.log(obj);
-        localStorage.setItem('tasks', JSON.stringify(obj));
+        taskBox.innerHTML = elem;
     };
+};
+
+function updateStatus(selectedTask) {
+    let tasks = JSON.parse(localStorage.getItem('tasks'));
+    const id = selectedTask.parentElement.parentElement.dataset.id;
+
+    for (i = 0; i < tasks.length; i++) {
+        if (selectedTask.checked && tasks[i].id === id) {
+            tasks[i].status = 'completed';
+        }
+        if (!selectedTask.checked && tasks[i].id === id) {
+            tasks[i].status = 'todo';
+        }
+    };
+    localStorage.setItem('tasks', JSON.stringify(tasks));
+};
+
+function deleteTask(selectedTask) {
+    let tasks = JSON.parse(localStorage.getItem('tasks'));
+    const id = selectedTask.parentElement.parentElement.dataset.id;
+
+    for (i = 0; i < tasks.length; i++) {
+
+        if (tasks[i].id === id) {
+            tasks.splice(i,1);
+            console.log(tasks)
+        };
+    };
+    localStorage.setItem('tasks', JSON.stringify(tasks));
+};
+
+function showTasks(status) {
+    let tasks = JSON.parse(localStorage.getItem('tasks'));
+    let elem = '';
+
+    if (status === 'all') {
+        tasks.forEach((item) => {
+            elem += `<div class="task" data-id="${item.id}">
+                <div class="task-info">
+                    <p class="task__name">${item.name}</p>
+                    <p class="task__time">${item.date}</p>
+                </div>
+                <div class="task-btn">
+                    <input onclick="updateStatus(this)" type="checkbox" id="task-status" class="task__status">
+                    <div class="settings" onclick="deleteTask(this)">
+                        <i class='bx bxs-trash-alt' ></i>
+                    </div>
+                </div>
+            </div>`
+        });
+    } else {
+        const array = tasks.filter(item => item.status === status);
+        array.forEach((item) => {
+            elem += `<div class="task" data-id="${item.id}">
+            <div class="task-info">
+                <p class="task__name">${item.name}</p>
+                <p class="task__time">${item.date}</p>
+            </div>
+            <div class="task-btn">
+                <input onclick="updateStatus(this)" type="checkbox" id="task-status" class="task__status">
+                <div class="settings" onclick="deleteTask(this)">
+                    <i class='bx bxs-trash-alt' ></i>
+                </div>
+            </div>
+        </div>`
+        });
+    };
+    return elem;
 };

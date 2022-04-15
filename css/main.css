@@ -76,6 +76,12 @@ body {
   margin-bottom: 100px;
 }
 
+.task-box .default-text {
+  font-size: 2rem;
+  font-weight: bold;
+  text-align: center;
+}
+
 .task {
   width: 100%;
   height: 80px;
