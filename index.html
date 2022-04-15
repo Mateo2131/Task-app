@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,6 +9,7 @@
     <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
     <title>Task APP</title>
 </head>
+
 <body>
     <nav id="nav" class="nav">
         <p class="nav__logo">TaskApp</p>
@@ -22,7 +24,6 @@
             <div class="tab" id="completed-btn">Completed</div>
         </div>
         <div class="task-box">
-            <p class="default-text">No tasks to do</p>
         </div>
         <div class="fixed-menu">
             <ul class="menu">
@@ -41,7 +42,30 @@
                 </li>
             </ul>
         </div>
+        <section class="project-box">
+            <div class="project">
+                <div class="info">
+                    <div class="info-text">
+                        <p class="info-text__p">Job Portal Website App</p>
+                        <span class="info-text__span">Dec 31 2024</span>
+                    </div>
+                    <div class="settings">
+                        <i class='bx bx-dots-horizontal-rounded'></i>
+                    </div>
+                </div>
+                <div class="timer">
+                    <div class="timer-days">
+                        <span class="days">80 / 90</span>
+                        <span class="days-left">8 days Left</span>
+                    </div>
+                    <div class="bar">
+                        <div class="progress"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
     <script src="/javascript/app.js"></script>
 </body>
+
 </html>
