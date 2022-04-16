@@ -45,7 +45,7 @@ body {
 }
 
 .logo {
-    font-size: 2.2rem;
+    font-size: 2.8rem;
 }
 
 .darkmode {
@@ -116,7 +116,205 @@ body {
     }
 }
 
+// Buttons
+
+.tab {
+    margin: 30px 0 20px 0;
+    display: flex;
+    justify-content: space-evenly;
+
+    &-btn {
+        font-size: 1.6rem;
+        border: 2px solid $b;
+        border-radius: 20px;
+        padding: 6px 12px;
+    }
+}
+
+.tab-btn.active {
+    background-color: $b;
+}
+
+@mixin card {
+    padding: 12px 16px;
+    width: 300px;
+    max-width: 300px;
+    box-shadow: 10px 10px 15px -3px rgba(0, 0, 0, 0.2);
+    background-color: $cb;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+// Project and Task box
+
+.card-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.project-box,
+.task-box {
+    padding: 10px;
+}
+
+.project {
+    @include card();
+    display: flex;
+    flex-direction: column;
+
+    &-top {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    &__title {
+        font-size: 1.9rem
+    }
+
+    &__settings {
+        font-size: 2rem;
+    }
+
+    &__date {
+        font-size: 1.2rem;
+        padding: 10px 0 20px 0;
+    }
+
+    &-date {
+        display: flex;
+        justify-content: space-between;
+        align-items: center
+    }
+
+    &-dateDetails {
+        padding: 4px 10px;
+        background-color: $b;
+        border-radius: 20px;
+        font-size: 1.4rem;
+    }
+
+    &__leftime {
+        font-size: 1.4rem;
+    }
+
+    .progress {
+        margin-top: 18px;
+        width: 100%;
+        height: 10px;
+        border-radius: 10px;
+        background-color: $bg;
+
+        &-bar {
+            width: 20%;
+            height: inherit;
+            border-radius: inherit;
+            background-color: $b;
+        }
+    }
+}
+
+.task {
+    @include card();
+    height: 90px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    &__title {
+        font-size: 1.8rem;
+        padding-bottom: 6px;
+    }
+
+    &__date {
+        font-size: 1.2rem;
+    }
+}
+
+// Modal
+
+.modal {
+    background-color: $cb;
+    padding: 12px;
+    border-radius: 20px;
+    width: 120px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    &__project,
+    &__task {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        cursor: pointer;
+    }
+
+    p {
+        font-size: 1.8rem;
+    }
+
+    i {
+        font-size: 1.7rem;
+    }
+}
+
+// Create Modal
+
+@mixin btn {
+    width: 280px;
+    max-width: 350px;
+    outline-color: $b;
+    border: none;
+    color: $w;
+    padding: 10px;
+    font-size: 1.6rem;
+}
+
+.create {
+    width: 100%;
+    padding: 15px;
+    background-color: $cb;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+
+    &__p {
+        font-size: 2rem;
+        text-align: center;
+        padding: 15px 0;
+    }
+
+    &-form {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    &__btn {
+        background-color: $bg;
+        border-radius: 6px;
+        @include btn();
+    }
+
+    &__btn-submit {
+        background-color: $b;
+        border-radius: 20px;
+        @include btn();
+    }
+}
+
 @media screen and (min-width:768px) {
+
+    .wrapper {
+        display: grid;
+        grid-auto-flow: column;
+        grid-template-columns: 200px 1fr;
+    }
 
     .nav {
         display: flex;
@@ -126,6 +324,9 @@ body {
         height: 100vh;
         padding: 10px 15px;
         background-color: $cb;
+        position: fixed;
+        left: 0;
+        top: 0;
     }
 
     .logo {

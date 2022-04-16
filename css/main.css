@@ -46,7 +46,7 @@ body {
 }
 
 .logo {
-  font-size: 2.2rem;
+  font-size: 2.8rem;
 }
 
 .darkmode {
@@ -134,7 +134,255 @@ body {
   display: none;
 }
 
+.tab {
+  margin: 30px 0 20px 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+}
+
+.tab-btn {
+  font-size: 1.6rem;
+  border: 2px solid #0043ce;
+  border-radius: 20px;
+  padding: 6px 12px;
+}
+
+.tab-btn.active {
+  background-color: #0043ce;
+}
+
+.card-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.project-box,
+.task-box {
+  padding: 10px;
+}
+
+.project {
+  padding: 12px 16px;
+  width: 300px;
+  max-width: 300px;
+  -webkit-box-shadow: 10px 10px 15px -3px rgba(0, 0, 0, 0.2);
+          box-shadow: 10px 10px 15px -3px rgba(0, 0, 0, 0.2);
+  background-color: #191d20;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.project-top {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.project__title {
+  font-size: 1.9rem;
+}
+
+.project__settings {
+  font-size: 2rem;
+}
+
+.project__date {
+  font-size: 1.2rem;
+  padding: 10px 0 20px 0;
+}
+
+.project-date {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.project-dateDetails {
+  padding: 4px 10px;
+  background-color: #0043ce;
+  border-radius: 20px;
+  font-size: 1.4rem;
+}
+
+.project__leftime {
+  font-size: 1.4rem;
+}
+
+.project .progress {
+  margin-top: 18px;
+  width: 100%;
+  height: 10px;
+  border-radius: 10px;
+  background-color: #080808;
+}
+
+.project .progress-bar {
+  width: 20%;
+  height: inherit;
+  border-radius: inherit;
+  background-color: #0043ce;
+}
+
+.task {
+  padding: 12px 16px;
+  width: 300px;
+  max-width: 300px;
+  -webkit-box-shadow: 10px 10px 15px -3px rgba(0, 0, 0, 0.2);
+          box-shadow: 10px 10px 15px -3px rgba(0, 0, 0, 0.2);
+  background-color: #191d20;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  height: 90px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.task__title {
+  font-size: 1.8rem;
+  padding-bottom: 6px;
+}
+
+.task__date {
+  font-size: 1.2rem;
+}
+
+.modal {
+  background-color: #191d20;
+  padding: 12px;
+  border-radius: 20px;
+  width: 120px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 8px;
+}
+
+.modal__project, .modal__task {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  cursor: pointer;
+}
+
+.modal p {
+  font-size: 1.8rem;
+}
+
+.modal i {
+  font-size: 1.7rem;
+}
+
+.create {
+  width: 100%;
+  padding: 15px;
+  background-color: #191d20;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+}
+
+.create__p {
+  font-size: 2rem;
+  text-align: center;
+  padding: 15px 0;
+}
+
+.create-form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 15px;
+}
+
+.create__btn {
+  background-color: #080808;
+  border-radius: 6px;
+  width: 280px;
+  max-width: 350px;
+  outline-color: #0043ce;
+  border: none;
+  color: #ffffff;
+  padding: 10px;
+  font-size: 1.6rem;
+}
+
+.create__btn-submit {
+  background-color: #0043ce;
+  border-radius: 20px;
+  width: 280px;
+  max-width: 350px;
+  outline-color: #0043ce;
+  border: none;
+  color: #ffffff;
+  padding: 10px;
+  font-size: 1.6rem;
+}
+
 @media screen and (min-width: 768px) {
+  .wrapper {
+    display: -ms-grid;
+    display: grid;
+    grid-auto-flow: column;
+    -ms-grid-columns: 200px 1fr;
+        grid-template-columns: 200px 1fr;
+  }
   .nav {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -150,6 +398,9 @@ body {
     height: 100vh;
     padding: 10px 15px;
     background-color: #191d20;
+    position: fixed;
+    left: 0;
+    top: 0;
   }
   .logo {
     padding-top: 20px;
