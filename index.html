@@ -21,7 +21,7 @@
                 <div class="menu">
                     <p class="menu__text">Menu</p>
                     <ul class="menu-links">
-                        <li class="menu-links__item">
+                        <li class="menu-links__item" id="displayProject">
                             <i class='bx bx-spreadsheet'></i>
                             <span>Projects</span>
                         </li>
@@ -29,7 +29,7 @@
                             <i class='bx bx-plus'></i>
                             <span>Create</span>
                         </li>
-                        <li class="menu-links__item">
+                        <li class="menu-links__item" id="displayTask">
                             <i class='bx bx-task'></i>
                             <span>Tasks</span>
                         </li>
@@ -50,77 +50,19 @@
         </header>
         <main class="main">
             <div class="tab">
-                <div class="tab-btn active">All</div>
-                <div class="tab-btn">To-Do</div>
-                <div class="tab-btn">Completed</div>
+                <div class="tab-btn active" id="all-btn">All</div>
+                <div class="tab-btn" id="todo-btn">To-Do</div>
+                <div class="tab-btn" id="completed-btn">Completed</div>
             </div>
             <section class="card-container">
+                
+                <div class="task-box active">
+                </div>
+
                 <div class="project-box">
-
-                    <div class="project">
-
-                        <div class="project-top">
-                            <p class="project__title">Food Delivery App</p>
-                            <div class="project__settings">
-                                <i class='bx bx-dots-vertical-rounded'></i>
-                            </div>
-                        </div>
-
-                        <div>
-                            <p class="project__date">Dec 31, 2025</p>
-                        </div>
-
-                        <div class="project-date">
-                            <div class="project-dateDetails">
-                                <span id="actualDate">70</span>
-                                /
-                                <span id="deadlineDate">90</span>
-                            </div>
-                            <p class="project__leftime">8 days left</p>
-                        </div>
-
-                        <div class="progress">
-                            <div class="progress-bar"></div>
-                        </div>
-
-                    </div>
-
                 </div>
 
-                <div class="task-box">
-                    <div class="task">
-                        <div class="task-text">
-                            <p class="task__title">Meeting with a Client</p>
-                            <span class="task__date">13:00PM</span>
-                        </div>
-                        <div class="task-btn">
-                            <input type="checkbox">
-                        </div>
-                    </div>
-                </div>
             </section>
-
-            <!-- <div class="modal">
-                <div class="modal__project" id="projectModal">
-                    <p>Project</p>
-                    <i class='bx bx-task'></i>
-                </div>
-                <div class="modal__task">
-                    <p>Task</p>
-                    <i class='bx bx-spreadsheet' id="taskModal"></i>
-                </div>
-            </div> -->
-
-            <!-- <div class="create">
-                <div>
-                    <p class="create__p">Add Task</p>
-                </div>
-                <form class="create-form">
-                    <input type="text" id="name" class="create__btn" placeholder="Task name">
-                    <input type="text" id="date" class="create__btn" placeholder="Deadline Date">
-                    <button class="create__btn-submit" id="submit-btn" type="button">Create</button>
-                </form>
-            </div> -->
 
         </main>
     </div>

@@ -149,6 +149,7 @@ body {
   border: 2px solid #0043ce;
   border-radius: 20px;
   padding: 6px 12px;
+  cursor: pointer;
 }
 
 .tab-btn.active {
@@ -166,11 +167,6 @@ body {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-}
-
-.project-box,
-.task-box {
-  padding: 10px;
 }
 
 .project {
@@ -296,7 +292,10 @@ body {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  gap: 8px;
+  gap: 12px;
+  position: fixed;
+  left: calc(50% - 55px);
+  bottom: 90px;
 }
 
 .modal__project, .modal__task {
@@ -317,12 +316,12 @@ body {
 }
 
 .modal i {
-  font-size: 1.7rem;
+  font-size: 2rem;
 }
 
 .create {
   width: 100%;
-  padding: 15px;
+  padding: 40px 15px;
   background-color: #191d20;
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
@@ -332,9 +331,9 @@ body {
 }
 
 .create__p {
-  font-size: 2rem;
+  font-size: 2.4rem;
   text-align: center;
-  padding: 15px 0;
+  padding-bottom: 16px;
 }
 
 .create-form {
@@ -359,7 +358,7 @@ body {
   outline-color: #0043ce;
   border: none;
   color: #ffffff;
-  padding: 10px;
+  padding: 14px;
   font-size: 1.6rem;
 }
 
@@ -371,8 +370,9 @@ body {
   outline-color: #0043ce;
   border: none;
   color: #ffffff;
-  padding: 10px;
+  padding: 14px;
   font-size: 1.6rem;
+  cursor: pointer;
 }
 
 @media screen and (min-width: 768px) {
@@ -455,6 +455,16 @@ body {
   }
   .menu-links .link-btn span {
     display: block;
+  }
+  .modal {
+    left: 200px;
+    bottom: calc(50% - 55px);
+  }
+  .create {
+    bottom: 250px;
+    left: 205px;
+    width: 300px;
+    border-radius: 20px;
   }
 }
 /*# sourceMappingURL=main.css.map */
