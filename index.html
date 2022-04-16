@@ -5,67 +5,49 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="./css/main.css">
     <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
     <title>Task APP</title>
 </head>
 
 <body>
-    <nav id="nav" class="nav">
-        <p class="nav__logo">TaskApp</p>
-        <div class="nav__icon">
-            <i class='bx bxs-bell'></i>
-        </div>
-    </nav>
-    <main>
-        <div class="btns-tab">
-            <div class="tab active" id="all-btn">All</div>
-            <div class="tab" id="todo-btn">To-Do</div>
-            <div class="tab" id="completed-btn">Completed</div>
-        </div>
-        <div class="task-box">
-        </div>
-        <div class="fixed-menu">
-            <ul class="menu">
-                <li class="menu__item active">
-                    <i class='bx bxs-home menu__item-icon'></i>
-                    <span class="menu__item-span">Home</span>
-                </li>
-                <li class="plus" id="add-btn">
-                    <div class="plus-circle">
+    <header class="header">
+
+        <nav class="nav">
+
+            <div class="logo">TaskApp</div>
+
+            <div class="menu">
+                <p class="menu__text">Menu</p>
+                <ul class="menu-links">
+                    <li class="menu-links__item">
+                        <i class='bx bx-spreadsheet'></i>
+                        <span>Projects</span>
+                    </li>
+                    <li class="menu-links__item link-btn" id="add-btn">
                         <i class='bx bx-plus'></i>
-                    </div>
-                </li>
-                <li class="menu__item">
-                    <i class='bx bx-receipt menu__item-icon'></i>
-                    <span class="menu__item-span">Project</span>
-                </li>
-            </ul>
-        </div>
-        <section class="project-box">
-            <div class="project">
-                <div class="info">
-                    <div class="info-text">
-                        <p class="info-text__p">Job Portal Website App</p>
-                        <span class="info-text__span">Dec 31 2024</span>
-                    </div>
-                    <div class="settings">
-                        <i class='bx bx-dots-horizontal-rounded'></i>
-                    </div>
+                        <span>Create</span>
+                    </li>
+                    <li class="menu-links__item">
+                        <i class='bx bx-task'></i>
+                        <span>Tasks</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="darkmode">
+                <div class="darkmode-item active">
+                    <i class='bx bx-sun'></i>
                 </div>
-                <div class="timer">
-                    <div class="timer-days">
-                        <span class="days">80 / 90</span>
-                        <span class="days-left">8 days Left</span>
-                    </div>
-                    <div class="bar">
-                        <div class="progress"></div>
-                    </div>
+                <div class="darkmode-item">
+                    <i class='bx bx-moon'></i>
                 </div>
             </div>
-        </section>
-    </main>
-    <script src="/javascript/app.js"></script>
+
+        </nav>
+
+    </header>
+    <script src="./javascript/app.js"></script>
 </body>
 
 </html>
