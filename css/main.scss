@@ -72,7 +72,6 @@ body {
     position: fixed;
     bottom: 0;
     left: 0;
-    padding: 10px;
 
     &__text {
         font-size: 2.4rem;
@@ -83,7 +82,7 @@ body {
         height: 100%;
         display: flex;
         align-items: center;
-        justify-content: space-around;
+        justify-content: space-evenly;
 
         &__item {
             display: flex;
@@ -144,6 +143,10 @@ body {
     background-color: $cb;
     border-radius: 8px;
     margin-bottom: 15px;
+}
+
+.main {
+    padding-bottom: 100px;
 }
 
 // Project and Task box
@@ -213,18 +216,33 @@ body {
 
 .task {
     @include card();
-    height: 90px;
+    height: 100px;
     display: flex;
     justify-content: space-between;
     align-items: center;
 
     &__title {
-        font-size: 1.8rem;
+        font-size: 2rem;
         padding-bottom: 6px;
     }
 
     &__date {
-        font-size: 1.2rem;
+        font-size: 1.3rem;
+    }
+
+    &-btn {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+
+        input {
+            height: 20px;
+            width: 20px;
+        }
+
+        i {
+            font-size: 2.4rem;
+        }
     }
 }
 
@@ -349,7 +367,6 @@ body {
         gap: 20px;
         position: static;
         background-color: unset;
-        padding: 0;
 
         &__text {
             display: block;

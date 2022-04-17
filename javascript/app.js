@@ -28,6 +28,7 @@ displayProject.addEventListener('click', () => {
     projectBox.classList.add('active');
     tasksBox.innerHTML = '';
     showAll('all');
+    setTimer();
 });
 
 function modal() {
@@ -79,7 +80,7 @@ function choose() {
             </div>
             <form class="create-form">
                 <input type="text" id="project-name" class="create__btn" placeholder="Project name">
-                <input type="text" id="project-date" class="create__btn" placeholder="Deadline Date">
+                <input type="datetime-local" id="project-date" class="create__btn">
                 <button class="create__btn-submit" id="project-btn" type="button">Create Project</button>
             </form>`;
             main.insertAdjacentElement('beforeend', elem);
@@ -171,7 +172,7 @@ function showProjects(projects) {
 
     projects.forEach((item) => {
         elem += `
-                <article class="project">
+                <article class="project" data-id="${item.id}">
                     <div class="project-top">
                         <p class="project__title">${item.name}</p>
                         <div class="project__settings">
@@ -183,9 +184,7 @@ function showProjects(projects) {
                     </div>
                     <div class="project-date">
                         <div class="project-dateDetails">
-                            <span id="actualDate">70</span>
-                            /
-                            <span id="deadlineDate">90</span>
+                            <span>70 / 90</span>
                         </div>
                         <p class="project__leftime">8 days left</p>
                     </div>
@@ -202,16 +201,127 @@ function showTasks(tasks) {
     let elem = '';
 
     tasks.forEach((item) => {
-        elem += `<article class="task">
+        elem += `<article class="task" data-id="${item.id}">
                         <div class="task-text">
                             <p class="task__title">${item.name}</p>
                             <span class="task__date">${item.date}</span>
                         </div>
                         <div class="task-btn">
-                            <input type="checkbox">
+                            <div class="delete-btn" onclick="deleteTask(this)">
+                                <i class='bx bxs-trash-alt'></i>
+                            </div> 
+                            <input type="checkbox" onclick="updateStatus(this)">
                         </div>
                     </article>`;
     });
 
     tasksBox.innerHTML = elem;
 };
+
+function deleteTask(selectedTask) {
+    const id = selectedTask.parentElement.parentElement.dataset.id;
+    let tasks = JSON.parse(localStorage.getItem('tasks'));
+
+    for (i = 0; i < tasks.length; i++) {
+        if (tasks[i].id === id) {
+            tasks.splice(i, 1);
+            console.log(tasks)
+        };
+    };
+    localStorage.setItem('tasks', JSON.stringify(tasks));
+}
+
+function updateStatus(selectedTask) {
+    const id = selectedTask.parentElement.parentElement.dataset.id;
+    let tasks = JSON.parse(localStorage.getItem('tasks'));
+
+    for (i = 0; i < tasks.length; i++) {
+        if (selectedTask.checked && tasks[i].id === id) {
+            tasks[i].status = 'completed';
+        }
+        if (!selectedTask.checked && tasks[i].id === id) {
+            tasks[i].status = 'todo';
+        }
+    };
+    localStorage.setItem('tasks', JSON.stringify(tasks));
+};
+
+const getRemainTime = deadline => {
+    let now = new Date();
+    let remainTime = (new Date(deadline) - now + 1000) / 1000;
+    let remainSeconds = ('0' + Math.floor(remainTime % 60)).slice(-2);
+    let remainMinutes = ('0' + Math.floor(remainTime / 60 % 60)).slice(-2);
+    let remainHours = ('0' + Math.floor(remainTime / 3600 % 24)).slice(-2);
+    let remainDays = Math.floor(remainTime / (3600 * 24));
+
+    return {
+        remainTime,
+        remainSeconds,
+        remainMinutes,
+        remainHours,
+        remainDays,
+    };
+};
+
+const countdown = (deadline, progressBar, dateDetails, daysLeft) => {
+    let totalTime = getRemainTime(deadline);
+    
+    let twentyPercent = (totalTime.remainTime * 20) / 100;
+    let fourtyPercent = (totalTime.remainTime * 40) / 100;
+    let sixtyPercent = (totalTime.remainTime * 60) / 100;
+    let eightyPercent = (totalTime.remainTime * 80) / 100;
+    let hundredtyPercent = (totalTime.remainTime * 100) / 100;
+    
+    const timerUpdate = setInterval( () => {
+        let time = getRemainTime(deadline);
+
+        dateDetails.textContent = `${time.remainDays} / ${totalTime.remainDays}`;
+        daysLeft.textContent = `${time.remainDays} days left`;
+        
+        if (time.remainDays < 0) {
+            dateDetails.textContent = '0 / 0';
+            daysLeft.textContent = 'Completed';
+            updateProjectStatus(daysLeft.parentElement.parentElement);
+        }
+
+        if (time.remainTime < hundredtyPercent) progressBar.style.width = `20%`;
+        if (time.remainTime < eightyPercent) progressBar.style.width = `40%`;
+        if (time.remainTime < sixtyPercent) progressBar.style.width = `60%`;
+        if (time.remainTime < fourtyPercent) progressBar.style.width = `80%`;
+        if (time.remainTime < twentyPercent) progressBar.style.width = `100%`;
+        if (time.remainTime <= 1) {
+            clearInterval(timerUpdate);
+        };
+    },1000);
+};
+
+function setTimer() {
+    const projects = document.querySelectorAll('.project');
+
+    projects.forEach( item => {
+        
+        const deadline = item.children[1].lastElementChild.textContent;
+        const progressBar = item.children[3].lastElementChild;
+        const dateDetails = item.children[2].firstElementChild.firstElementChild;
+        const daysLeft = item.children[2].lastElementChild;
+        
+        countdown(deadline,progressBar,dateDetails,daysLeft);
+    });
+};
+
+function updateProjectStatus(element) {
+    const id = element.dataset.id;
+    let projects = JSON.parse(localStorage.getItem('projects'));
+
+    for (i = 0; i < projects.length; i++) {
+        if (projects[i].id === id) projects[i].status = 'completed';
+    };
+    localStorage.setItem('projects', JSON.stringify(projects));
+};
+
+// Agregar un padding a las secciones asi no queda bajo el nav
+// Borrar tarea y editar su estado (lo mismo con proyectos)
+// funcionalidades del proyecto
+// agregar el darkmode
+// Dar toques finales al css y js
+// Al no existir tareas los botones no funcionan (evitar que tiren alertas)

@@ -75,7 +75,6 @@ body {
   position: fixed;
   bottom: 0;
   left: 0;
-  padding: 10px;
 }
 
 .menu__text {
@@ -91,8 +90,9 @@ body {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
 }
 
 .menu-links__item {
@@ -154,6 +154,10 @@ body {
 
 .tab-btn.active {
   background-color: #0043ce;
+}
+
+.main {
+  padding-bottom: 100px;
 }
 
 .card-container {
@@ -259,7 +263,7 @@ body {
   background-color: #191d20;
   border-radius: 8px;
   margin-bottom: 15px;
-  height: 90px;
+  height: 100px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -272,12 +276,31 @@ body {
 }
 
 .task__title {
-  font-size: 1.8rem;
+  font-size: 2rem;
   padding-bottom: 6px;
 }
 
 .task__date {
-  font-size: 1.2rem;
+  font-size: 1.3rem;
+}
+
+.task-btn {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 6px;
+}
+
+.task-btn input {
+  height: 20px;
+  width: 20px;
+}
+
+.task-btn i {
+  font-size: 2.4rem;
 }
 
 .modal {
@@ -425,7 +448,6 @@ body {
     gap: 20px;
     position: static;
     background-color: unset;
-    padding: 0;
   }
   .menu__text {
     display: block;
