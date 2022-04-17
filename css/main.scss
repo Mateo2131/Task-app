@@ -71,7 +71,7 @@
 
     @media screen and (min-width:600px) {
         .nav {
-            background-color: var(--gray20);
+            background-color: #F4F6F7;
         }
 
         .menu {
@@ -517,6 +517,7 @@ body {
                 width: 100%;
                 height: auto;
                 justify-content: flex-start;
+                order: 3;
 
                 span {
                     display: block;

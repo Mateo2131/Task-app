@@ -8,6 +8,8 @@ const displayProject = document.getElementById('displayProject');
 const darkmode = document.getElementById('dark');
 const lightmode = document.getElementById('light');
 
+document.addEventListener('DOMContentLoaded', showAll('all'));
+
 addBtn.addEventListener('click', modal);
 
 lightmode.addEventListener('click', (e) => {
@@ -67,20 +69,24 @@ displayProject.addEventListener('click', () => {
 });
 
 function modal() {
+    if (document.querySelector('.modal')) main.removeChild(document.querySelector('.modal'));
+    if (document.querySelector('.create')) return null;
+
     const elem = document.createElement('div');
     elem.classList.add('modal');
     elem.innerHTML = ` 
-        <div class="modal__project" id="projectModal">
-            <p>Project</p>
-            <i class='bx bx-task'></i>
-        </div>
-        <div class="modal__task" id="taskModal">
-            <p>Task</p>
-            <i class='bx bx-spreadsheet'></i>
-        </div>`;
+            <div class="modal__project" id="projectModal">
+                <p>Project</p>
+                <i class='bx bx-task'></i>
+            </div>
+            <div class="modal__task" id="taskModal">
+                <p>Task</p>
+                <i class='bx bx-spreadsheet'></i>
+            </div>`;
 
     main.insertAdjacentElement('beforeend', elem);
     choose();
+
 };
 
 function choose() {
@@ -139,18 +145,19 @@ function createProject() {
             status: 'todo',
         };
 
-        if (!localStorage.getItem('projects')) {
+        if (!sessionStorage.getItem('projects')) {
             let projects = [];
             projects.push(project);
-            localStorage.setItem('projects', JSON.stringify(projects));
+            sessionStorage.setItem('projects', JSON.stringify(projects));
         } else {
-            let projects = JSON.parse(localStorage.getItem('projects'));
+            let projects = JSON.parse(sessionStorage.getItem('projects'));
             projects.push(project);
-            localStorage.setItem('projects', JSON.stringify(projects));
+            sessionStorage.setItem('projects', JSON.stringify(projects));
         };
 
         main.removeChild(document.querySelector('.create'));
         e.preventDefault();
+        showAll('all');
     };
 };
 
@@ -168,26 +175,27 @@ function createTask() {
             status: 'todo',
         };
 
-        if (!localStorage.getItem('tasks')) {
+        if (!sessionStorage.getItem('tasks')) {
             let tasks = [];
             tasks.push(task);
-            localStorage.setItem('tasks', JSON.stringify(tasks));
+            sessionStorage.setItem('tasks', JSON.stringify(tasks));
         } else {
-            let tasks = JSON.parse(localStorage.getItem('tasks'));
+            let tasks = JSON.parse(sessionStorage.getItem('tasks'));
             tasks.push(task);
-            localStorage.setItem('tasks', JSON.stringify(tasks));
+            sessionStorage.setItem('tasks', JSON.stringify(tasks));
         };
-
+        
         main.removeChild(document.querySelector('.create'));
         e.preventDefault();
+        showAll('all');
     };
 };
 
 function showAll(status) {
 
     if (projectBox.classList.contains('active')) {
-        if(!JSON.parse(localStorage.getItem('projects'))) return null;
-        let projects = JSON.parse(localStorage.getItem('projects'));
+        if (!JSON.parse(sessionStorage.getItem('projects'))) return null;
+        let projects = JSON.parse(sessionStorage.getItem('projects'));
 
         if (status === 'all') showProjects(projects);
         if (status === 'todo') showProjects(projects.filter(item => item.status === status));
@@ -195,8 +203,8 @@ function showAll(status) {
     }
 
     if (tasksBox.classList.contains('active')) {
-        if(!JSON.parse(localStorage.getItem('tasks'))) return null;
-        let tasks = JSON.parse(localStorage.getItem('tasks'));
+        if (!JSON.parse(sessionStorage.getItem('tasks'))) return null;
+        let tasks = JSON.parse(sessionStorage.getItem('tasks'));
 
         if (status === 'all') showTasks(tasks);
         if (status === 'todo') showTasks(tasks.filter(item => item.status === status));
@@ -257,7 +265,7 @@ function showTasks(tasks) {
 
 function deleteTask(selectedTask) {
     const id = selectedTask.parentElement.parentElement.dataset.id;
-    let tasks = JSON.parse(localStorage.getItem('tasks'));
+    let tasks = JSON.parse(sessionStorage.getItem('tasks'));
 
     for (i = 0; i < tasks.length; i++) {
         if (tasks[i].id === id) {
@@ -265,13 +273,13 @@ function deleteTask(selectedTask) {
         };
     };
 
-    localStorage.setItem('tasks', JSON.stringify(tasks));
+    sessionStorage.setItem('tasks', JSON.stringify(tasks));
     tasksBox.removeChild(selectedTask.parentElement.parentElement);
 };
 
 function updateStatus(selectedTask) {
     const id = selectedTask.parentElement.parentElement.dataset.id;
-    let tasks = JSON.parse(localStorage.getItem('tasks'));
+    let tasks = JSON.parse(sessionStorage.getItem('tasks'));
 
     for (i = 0; i < tasks.length; i++) {
         if (selectedTask.checked && tasks[i].id === id) {
@@ -281,7 +289,7 @@ function updateStatus(selectedTask) {
             tasks[i].status = 'todo';
         }
     };
-    localStorage.setItem('tasks', JSON.stringify(tasks));
+    sessionStorage.setItem('tasks', JSON.stringify(tasks));
     tasksBox.removeChild(selectedTask.parentElement.parentElement);
 };
 
@@ -304,19 +312,19 @@ const getRemainTime = deadline => {
 
 const countdown = (deadline, progressBar, dateDetails, daysLeft) => {
     let totalTime = getRemainTime(deadline);
-    
+
     let twentyPercent = (totalTime.remainTime * 20) / 100;
     let fourtyPercent = (totalTime.remainTime * 40) / 100;
     let sixtyPercent = (totalTime.remainTime * 60) / 100;
     let eightyPercent = (totalTime.remainTime * 80) / 100;
     let hundredtyPercent = (totalTime.remainTime * 100) / 100;
-    
-    const timerUpdate = setInterval( () => {
+
+    const timerUpdate = setInterval(() => {
         let time = getRemainTime(deadline);
 
         dateDetails.textContent = `${time.remainDays} / ${totalTime.remainDays}`;
         daysLeft.textContent = `${time.remainDays} days left`;
-        
+
         if (time.remainDays < 0) {
             dateDetails.textContent = '0 / 0';
             daysLeft.textContent = 'Completed';
@@ -331,32 +339,31 @@ const countdown = (deadline, progressBar, dateDetails, daysLeft) => {
         if (time.remainTime <= 1) {
             clearInterval(timerUpdate);
         };
-    },1000);
+    }, 1000);
 };
 
 function setTimer() {
     const projects = document.querySelectorAll('.project');
 
-    projects.forEach( item => {
-        
+    projects.forEach(item => {
+
         const deadline = item.children[1].lastElementChild.textContent;
         const progressBar = item.children[3].lastElementChild;
         const dateDetails = item.children[2].firstElementChild.firstElementChild;
         const daysLeft = item.children[2].lastElementChild;
-        
-        countdown(deadline,progressBar,dateDetails,daysLeft);
+
+        countdown(deadline, progressBar, dateDetails, daysLeft);
     });
 };
 
 function updateProjectStatus(element) {
     const id = element.dataset.id;
-    let projects = JSON.parse(localStorage.getItem('projects'));
+    let projects = JSON.parse(sessionStorage.getItem('projects'));
 
     for (i = 0; i < projects.length; i++) {
         if (projects[i].id === id) projects[i].status = 'completed';
     };
-    localStorage.setItem('projects', JSON.stringify(projects));
+    sessionStorage.setItem('projects', JSON.stringify(projects));
 };
 
-// agregar el darkmode
 // Dar toques finales al css y js

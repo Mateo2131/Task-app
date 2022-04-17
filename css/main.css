@@ -71,7 +71,7 @@
 
 @media screen and (min-width: 600px) {
   .light .nav {
-    background-color: var(--gray20);
+    background-color: #F4F6F7;
   }
   .light .menu {
     background: unset;
@@ -606,6 +606,9 @@ body {
     -webkit-box-pack: start;
         -ms-flex-pack: start;
             justify-content: flex-start;
+    -webkit-box-ordinal-group: 4;
+        -ms-flex-order: 3;
+            order: 3;
   }
   .menu-links .link-btn span {
     display: block;
