@@ -5,16 +5,51 @@ const projectBox = document.querySelector('.project-box');
 const tasksBox = document.querySelector('.task-box');
 const displayTasks = document.getElementById('displayTask');
 const displayProject = document.getElementById('displayProject');
+const darkmode = document.getElementById('dark');
+const lightmode = document.getElementById('light');
 
-addBtn.addEventListener('click', () => {
-    modal();
+addBtn.addEventListener('click', modal);
+
+lightmode.addEventListener('click', (e) => {
+    lightmode.classList.remove('active');
+    darkmode.classList.add('active');
+    document.body.classList.remove('light');
+    document.body.classList.add('dark');
+});
+
+darkmode.addEventListener('click', (e) => {
+    darkmode.classList.remove('active');
+    lightmode.classList.add('active');
+    document.body.classList.remove('dark');
+    document.body.classList.add('light');
 });
 
 tab.addEventListener('click', (e) => {
-    if (e.target.id === 'all-btn') showAll('all');
-    if (e.target.id === 'todo-btn') showAll('todo');
-    if (e.target.id === 'completed-btn') showAll('completed');
+    if (e.target.id === 'all-btn') {
+        removeActiveBtns();
+        document.getElementById(e.target.id).classList.add('active');
+        showAll('all');
+        setTimer();
+    };
+    if (e.target.id === 'todo-btn') {
+        removeActiveBtns();
+        document.getElementById(e.target.id).classList.add('active');
+        showAll('todo');
+        setTimer();
+    }
+    if (e.target.id === 'completed-btn') {
+        removeActiveBtns();
+        document.getElementById(e.target.id).classList.add('active');
+        showAll('completed');
+        setTimer();
+    };
 });
+
+function removeActiveBtns() {
+    document.getElementById('all-btn').classList.remove('active');
+    document.getElementById('todo-btn').classList.remove('active');
+    document.getElementById('completed-btn').classList.remove('active');
+};
 
 displayTasks.addEventListener('click', () => {
     projectBox.classList.remove('active');
@@ -151,6 +186,7 @@ function createTask() {
 function showAll(status) {
 
     if (projectBox.classList.contains('active')) {
+        if(!JSON.parse(localStorage.getItem('projects'))) return null;
         let projects = JSON.parse(localStorage.getItem('projects'));
 
         if (status === 'all') showProjects(projects);
@@ -159,6 +195,7 @@ function showAll(status) {
     }
 
     if (tasksBox.classList.contains('active')) {
+        if(!JSON.parse(localStorage.getItem('tasks'))) return null;
         let tasks = JSON.parse(localStorage.getItem('tasks'));
 
         if (status === 'all') showTasks(tasks);
@@ -184,9 +221,9 @@ function showProjects(projects) {
                     </div>
                     <div class="project-date">
                         <div class="project-dateDetails">
-                            <span>70 / 90</span>
+                            <span>0 / 0</span>
                         </div>
-                        <p class="project__leftime">8 days left</p>
+                        <p class="project__leftime">0 days left</p>
                     </div>
                     <div class="progress">
                         <div class="progress-bar"></div>
@@ -225,11 +262,12 @@ function deleteTask(selectedTask) {
     for (i = 0; i < tasks.length; i++) {
         if (tasks[i].id === id) {
             tasks.splice(i, 1);
-            console.log(tasks)
         };
     };
+
     localStorage.setItem('tasks', JSON.stringify(tasks));
-}
+    tasksBox.removeChild(selectedTask.parentElement.parentElement);
+};
 
 function updateStatus(selectedTask) {
     const id = selectedTask.parentElement.parentElement.dataset.id;
@@ -244,6 +282,7 @@ function updateStatus(selectedTask) {
         }
     };
     localStorage.setItem('tasks', JSON.stringify(tasks));
+    tasksBox.removeChild(selectedTask.parentElement.parentElement);
 };
 
 const getRemainTime = deadline => {
@@ -284,10 +323,10 @@ const countdown = (deadline, progressBar, dateDetails, daysLeft) => {
             updateProjectStatus(daysLeft.parentElement.parentElement);
         }
 
-        if (time.remainTime < hundredtyPercent) progressBar.style.width = `20%`;
-        if (time.remainTime < eightyPercent) progressBar.style.width = `40%`;
-        if (time.remainTime < sixtyPercent) progressBar.style.width = `60%`;
-        if (time.remainTime < fourtyPercent) progressBar.style.width = `80%`;
+        if (time.remainTime < hundredtyPercent) progressBar.style.width = `0%`;
+        if (time.remainTime < eightyPercent) progressBar.style.width = `20%`;
+        if (time.remainTime < sixtyPercent) progressBar.style.width = `40%`;
+        if (time.remainTime < fourtyPercent) progressBar.style.width = `60%`;
         if (time.remainTime < twentyPercent) progressBar.style.width = `100%`;
         if (time.remainTime <= 1) {
             clearInterval(timerUpdate);
@@ -319,9 +358,5 @@ function updateProjectStatus(element) {
     localStorage.setItem('projects', JSON.stringify(projects));
 };
 
-// Agregar un padding a las secciones asi no queda bajo el nav
-// Borrar tarea y editar su estado (lo mismo con proyectos)
-// funcionalidades del proyecto
 // agregar el darkmode
 // Dar toques finales al css y js
-// Al no existir tareas los botones no funcionan (evitar que tiren alertas)

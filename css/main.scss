@@ -1,16 +1,165 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
 
 .light {
-    --blue50: #4589FF;
     --blue60: #0F62FE;
     --gray10: #F4F4F4;
-    --gray60: #736F6F;
+    --bg: #e5e0de;
+    --b: #000;
+    --w: #ffffff;
+    --gray20: #eceeee;
+    --green: #42be65;
+
+    background-color: var(--bg);
+    color: var(--b);
+
+    .menu {
+        background-color: var(--w);
+        color: var(--b);
+    }
+
+    .link-btn {
+        background-color: var(--blue60);
+        color: var(--w);
+    }
+
+    .tab-btn {
+        border-color: var(--blue60);
+    }
+
+    .tab-btn.active {
+        background-color: var(--blue60);
+        color: var(--w);
+    }
+
+    .project,
+    .task {
+        background-color: var(--w);
+    }
+
+    .modal {
+        background-color: var(--w);
+    }
+
+    .project-dateDetails {
+        background-color: var(--green);
+        color: var(--w);
+    }
+
+    .progress {
+        background-color: var(--gray20);
+
+        &-bar {
+            background-color: var(--green);
+        }
+    }
+
+    .create {
+        background-color: var(--w);
+        box-shadow: 10px 10px 15px -3px rgba(0, 0, 0, 0.2);
+
+        &__btn {
+            outline-color: var(--b);
+            background-color: var(--gray20);
+            color: var(--b);
+        }
+
+        &__btn-submit {
+            background-color: var(--blue60);
+            color: var(--w);
+        }
+    }
+
+    @media screen and (min-width:600px) {
+        .nav {
+            background-color: var(--gray20);
+        }
+
+        .menu {
+            background: unset;
+        }
+
+        .link-btn {
+            color: var(--b);
+        }
+    }
 }
 
-$cb: #191d20;
-$bg: #080808;
-$b: #0043ce;
-$w: #ffffff;
+.dark {
+    --cb: #191d20;
+    --bg: #080808;
+    --b: #0043ce;
+    --w: #ffffff;
+
+    background-color: var(--bg);
+    color: var(--w);
+
+    input[type="date"]::-webkit-inner-spin-button,
+    ::-webkit-calendar-picker-indicator {
+        filter: drop-shadow(16px 16px 20px rgb(255, 255, 255)) invert(100%);
+    }
+
+    .menu {
+        background-color: var(--cb);
+    }
+
+    .link-btn {
+        background-color: var(--b);
+    }
+
+    .tab-btn {
+        border-color: var(--b);
+    }
+
+    .tab-btn.active {
+        background-color: var(--b);
+    }
+
+    .project,
+    .task {
+        background-color: var(--cb);
+    }
+
+    .modal {
+        background-color: var(--cb);
+    }
+
+    .project-dateDetails {
+        background-color: var(--b);
+    }
+
+    .progress {
+        background-color: var(--bg);
+
+        &-bar {
+            background-color: var(--b);
+        }
+    }
+
+    .create {
+        background-color: var(--cb);
+
+        &__btn {
+            outline-color: var(--b);
+            background-color: var(--bg);
+            color: var(--w);
+        }
+
+        &__btn-submit {
+            background-color: var(--b);
+            color: var(--w);
+        }
+    }
+
+    @media screen and (min-width:600px) {
+        .nav {
+            background-color: var(--cb);
+        }
+
+        .menu {
+            background: unset;
+        }
+    }
+}
 
 *,
 *:after,
@@ -27,8 +176,6 @@ html {
 }
 
 body {
-    background-color: $bg;
-    color: $w;
     font-family: 'Open Sans', sans-serif;
 }
 
@@ -55,20 +202,22 @@ body {
 
 .darkmode-item {
     display: none;
+    height: 40px;
+    width: 40px;
     font-size: 2.4rem;
     cursor: pointer;
 }
 
 .darkmode-item.active {
-    display: block;
+    display: grid;
+    place-content: center;
 }
 
 .menu {
     width: 100%;
     height: 80px;
-    border-top-left-radius: 20px;
-    border-top-right-radius: 20px;
-    background-color: $cb;
+    border-top-left-radius: 40px;
+    border-top-right-radius: 40px;
     position: fixed;
     bottom: 0;
     left: 0;
@@ -104,7 +253,6 @@ body {
             justify-content: center;
             justify-self: center;
             border-radius: 50%;
-            background-color: $b;
             width: 50px;
             height: 50px;
 
@@ -124,15 +272,11 @@ body {
 
     &-btn {
         font-size: 1.6rem;
-        border: 2px solid $b;
+        border: 2px solid;
         border-radius: 20px;
         padding: 6px 12px;
         cursor: pointer;
     }
-}
-
-.tab-btn.active {
-    background-color: $b;
 }
 
 @mixin card {
@@ -140,7 +284,6 @@ body {
     width: 300px;
     max-width: 300px;
     box-shadow: 10px 10px 15px -3px rgba(0, 0, 0, 0.2);
-    background-color: $cb;
     border-radius: 8px;
     margin-bottom: 15px;
 }
@@ -189,7 +332,6 @@ body {
 
     &-dateDetails {
         padding: 4px 10px;
-        background-color: $b;
         border-radius: 20px;
         font-size: 1.4rem;
     }
@@ -203,13 +345,12 @@ body {
         width: 100%;
         height: 10px;
         border-radius: 10px;
-        background-color: $bg;
 
         &-bar {
             width: 20%;
             height: inherit;
             border-radius: inherit;
-            background-color: $b;
+            transition: all 1s ease;
         }
     }
 }
@@ -249,7 +390,6 @@ body {
 // Modal
 
 .modal {
-    background-color: $cb;
     padding: 12px;
     border-radius: 20px;
     width: 120px;
@@ -282,9 +422,7 @@ body {
 @mixin btn {
     width: 280px;
     max-width: 350px;
-    outline-color: $b;
     border: none;
-    color: $w;
     padding: 14px;
     font-size: 1.6rem;
 }
@@ -292,7 +430,6 @@ body {
 .create {
     width: 100%;
     padding: 40px 15px;
-    background-color: $cb;
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
     position: fixed;
@@ -313,20 +450,18 @@ body {
     }
 
     &__btn {
-        background-color: $bg;
         border-radius: 6px;
         @include btn();
     }
 
     &__btn-submit {
-        background-color: $b;
         border-radius: 20px;
         @include btn();
         cursor: pointer;
     }
 }
 
-@media screen and (min-width:768px) {
+@media screen and (min-width:600px) {
 
     .wrapper {
         display: grid;
@@ -341,7 +476,6 @@ body {
         width: 200px;
         height: 100vh;
         padding: 10px 15px;
-        background-color: $cb;
         position: fixed;
         left: 0;
         top: 0;
@@ -353,10 +487,6 @@ body {
 
     .darkmode {
         margin: 0 auto;
-
-        &-item {
-            display: block;
-        }
     }
 
     .menu {
@@ -364,9 +494,9 @@ body {
         display: flex;
         flex-direction: column;
         align-self: flex-start;
+        border-radius: unset;
         gap: 20px;
         position: static;
-        background-color: unset;
 
         &__text {
             display: block;
@@ -405,5 +535,24 @@ body {
         left: 205px;
         width: 300px;
         border-radius: 20px;
+    }
+
+    .tab {
+        margin: 80px 0 40px 0;
+    }
+
+    .project-box,
+    .task-box {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+}
+
+@media screen and (min-width:800px) {
+
+    .project-box,
+    .task-box {
+        gap: 12px;
     }
 }

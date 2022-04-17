@@ -1,9 +1,160 @@
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans&display=swap");
 .light {
-  --blue50: #4589FF;
   --blue60: #0F62FE;
   --gray10: #F4F4F4;
-  --gray60: #736F6F;
+  --bg: #e5e0de;
+  --b: #000;
+  --w: #ffffff;
+  --gray20: #eceeee;
+  --green: #42be65;
+  background-color: var(--bg);
+  color: var(--b);
+}
+
+.light .menu {
+  background-color: var(--w);
+  color: var(--b);
+}
+
+.light .link-btn {
+  background-color: var(--blue60);
+  color: var(--w);
+}
+
+.light .tab-btn {
+  border-color: var(--blue60);
+}
+
+.light .tab-btn.active {
+  background-color: var(--blue60);
+  color: var(--w);
+}
+
+.light .project,
+.light .task {
+  background-color: var(--w);
+}
+
+.light .modal {
+  background-color: var(--w);
+}
+
+.light .project-dateDetails {
+  background-color: var(--green);
+  color: var(--w);
+}
+
+.light .progress {
+  background-color: var(--gray20);
+}
+
+.light .progress-bar {
+  background-color: var(--green);
+}
+
+.light .create {
+  background-color: var(--w);
+  -webkit-box-shadow: 10px 10px 15px -3px rgba(0, 0, 0, 0.2);
+          box-shadow: 10px 10px 15px -3px rgba(0, 0, 0, 0.2);
+}
+
+.light .create__btn {
+  outline-color: var(--b);
+  background-color: var(--gray20);
+  color: var(--b);
+}
+
+.light .create__btn-submit {
+  background-color: var(--blue60);
+  color: var(--w);
+}
+
+@media screen and (min-width: 600px) {
+  .light .nav {
+    background-color: var(--gray20);
+  }
+  .light .menu {
+    background: unset;
+  }
+  .light .link-btn {
+    color: var(--b);
+  }
+}
+
+.dark {
+  --cb: #191d20;
+  --bg: #080808;
+  --b: #0043ce;
+  --w: #ffffff;
+  background-color: var(--bg);
+  color: var(--w);
+}
+
+.dark input[type="date"]::-webkit-inner-spin-button,
+.dark ::-webkit-calendar-picker-indicator {
+  -webkit-filter: drop-shadow(16px 16px 20px white) invert(100%);
+          filter: drop-shadow(16px 16px 20px white) invert(100%);
+}
+
+.dark .menu {
+  background-color: var(--cb);
+}
+
+.dark .link-btn {
+  background-color: var(--b);
+}
+
+.dark .tab-btn {
+  border-color: var(--b);
+}
+
+.dark .tab-btn.active {
+  background-color: var(--b);
+}
+
+.dark .project,
+.dark .task {
+  background-color: var(--cb);
+}
+
+.dark .modal {
+  background-color: var(--cb);
+}
+
+.dark .project-dateDetails {
+  background-color: var(--b);
+}
+
+.dark .progress {
+  background-color: var(--bg);
+}
+
+.dark .progress-bar {
+  background-color: var(--b);
+}
+
+.dark .create {
+  background-color: var(--cb);
+}
+
+.dark .create__btn {
+  outline-color: var(--b);
+  background-color: var(--bg);
+  color: var(--w);
+}
+
+.dark .create__btn-submit {
+  background-color: var(--b);
+  color: var(--w);
+}
+
+@media screen and (min-width: 600px) {
+  .dark .nav {
+    background-color: var(--cb);
+  }
+  .dark .menu {
+    background: unset;
+  }
 }
 
 *,
@@ -22,8 +173,6 @@ html {
 }
 
 body {
-  background-color: #080808;
-  color: #ffffff;
   font-family: 'Open Sans', sans-serif;
 }
 
@@ -58,20 +207,23 @@ body {
 
 .darkmode-item {
   display: none;
+  height: 40px;
+  width: 40px;
   font-size: 2.4rem;
   cursor: pointer;
 }
 
 .darkmode-item.active {
-  display: block;
+  display: -ms-grid;
+  display: grid;
+  place-content: center;
 }
 
 .menu {
   width: 100%;
   height: 80px;
-  border-top-left-radius: 20px;
-  border-top-right-radius: 20px;
-  background-color: #191d20;
+  border-top-left-radius: 40px;
+  border-top-right-radius: 40px;
   position: fixed;
   bottom: 0;
   left: 0;
@@ -125,7 +277,6 @@ body {
   -ms-grid-column-align: center;
       justify-self: center;
   border-radius: 50%;
-  background-color: #0043ce;
   width: 50px;
   height: 50px;
 }
@@ -146,14 +297,10 @@ body {
 
 .tab-btn {
   font-size: 1.6rem;
-  border: 2px solid #0043ce;
+  border: 2px solid;
   border-radius: 20px;
   padding: 6px 12px;
   cursor: pointer;
-}
-
-.tab-btn.active {
-  background-color: #0043ce;
 }
 
 .main {
@@ -179,7 +326,6 @@ body {
   max-width: 300px;
   -webkit-box-shadow: 10px 10px 15px -3px rgba(0, 0, 0, 0.2);
           box-shadow: 10px 10px 15px -3px rgba(0, 0, 0, 0.2);
-  background-color: #191d20;
   border-radius: 8px;
   margin-bottom: 15px;
   display: -webkit-box;
@@ -230,7 +376,6 @@ body {
 
 .project-dateDetails {
   padding: 4px 10px;
-  background-color: #0043ce;
   border-radius: 20px;
   font-size: 1.4rem;
 }
@@ -244,14 +389,14 @@ body {
   width: 100%;
   height: 10px;
   border-radius: 10px;
-  background-color: #080808;
 }
 
 .project .progress-bar {
   width: 20%;
   height: inherit;
   border-radius: inherit;
-  background-color: #0043ce;
+  -webkit-transition: all 1s ease;
+  transition: all 1s ease;
 }
 
 .task {
@@ -260,7 +405,6 @@ body {
   max-width: 300px;
   -webkit-box-shadow: 10px 10px 15px -3px rgba(0, 0, 0, 0.2);
           box-shadow: 10px 10px 15px -3px rgba(0, 0, 0, 0.2);
-  background-color: #191d20;
   border-radius: 8px;
   margin-bottom: 15px;
   height: 100px;
@@ -304,7 +448,6 @@ body {
 }
 
 .modal {
-  background-color: #191d20;
   padding: 12px;
   border-radius: 20px;
   width: 120px;
@@ -345,7 +488,6 @@ body {
 .create {
   width: 100%;
   padding: 40px 15px;
-  background-color: #191d20;
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
   position: fixed;
@@ -374,31 +516,25 @@ body {
 }
 
 .create__btn {
-  background-color: #080808;
   border-radius: 6px;
   width: 280px;
   max-width: 350px;
-  outline-color: #0043ce;
   border: none;
-  color: #ffffff;
   padding: 14px;
   font-size: 1.6rem;
 }
 
 .create__btn-submit {
-  background-color: #0043ce;
   border-radius: 20px;
   width: 280px;
   max-width: 350px;
-  outline-color: #0043ce;
   border: none;
-  color: #ffffff;
   padding: 14px;
   font-size: 1.6rem;
   cursor: pointer;
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 600px) {
   .wrapper {
     display: -ms-grid;
     display: grid;
@@ -420,7 +556,6 @@ body {
     width: 200px;
     height: 100vh;
     padding: 10px 15px;
-    background-color: #191d20;
     position: fixed;
     left: 0;
     top: 0;
@@ -430,9 +565,6 @@ body {
   }
   .darkmode {
     margin: 0 auto;
-  }
-  .darkmode-item {
-    display: block;
   }
   .menu {
     height: auto;
@@ -445,9 +577,9 @@ body {
             flex-direction: column;
     -ms-flex-item-align: start;
         align-self: flex-start;
+    border-radius: unset;
     gap: 20px;
     position: static;
-    background-color: unset;
   }
   .menu__text {
     display: block;
@@ -487,6 +619,27 @@ body {
     left: 205px;
     width: 300px;
     border-radius: 20px;
+  }
+  .tab {
+    margin: 80px 0 40px 0;
+  }
+  .project-box,
+  .task-box {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+}
+
+@media screen and (min-width: 800px) {
+  .project-box,
+  .task-box {
+    gap: 12px;
   }
 }
 /*# sourceMappingURL=main.css.map */
