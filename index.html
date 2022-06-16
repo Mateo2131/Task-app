@@ -2,71 +2,14 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./css/main.css">
-    <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
-    <title>Task APP</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vite App</title>
 </head>
 
-<body class="dark">
-    <div class="wrapper">
-        <header class="header">
-
-            <nav class="nav">
-
-                <div class="logo">TaskApp</div>
-
-                <div class="menu">
-                    <p class="menu__text">Menu</p>
-                    <ul class="menu-links">
-                        <li class="menu-links__item" id="displayProject">
-                            <i class='bx bx-spreadsheet'></i>
-                            <span>Projects</span>
-                        </li>
-                        <li class="menu-links__item link-btn" id="add-btn">
-                            <i class='bx bx-plus'></i>
-                            <span>Create</span>
-                        </li>
-                        <li class="menu-links__item" id="displayTask">
-                            <i class='bx bx-task'></i>
-                            <span>Tasks</span>
-                        </li>
-                    </ul>
-                </div>
-
-                <div class="darkmode">
-                    <div class="darkmode-item" id="light">
-                        <i class='bx bx-sun'></i>
-                    </div>
-                    <div class="darkmode-item active" id="dark">
-                        <i class='bx bx-moon'></i>
-                    </div>
-                </div>
-
-            </nav>
-
-        </header>
-        <main class="main">
-            <div class="tab">
-                <div class="tab-btn active" id="all-btn">All</div>
-                <div class="tab-btn" id="todo-btn">To-Do</div>
-                <div class="tab-btn" id="completed-btn">Completed</div>
-            </div>
-            <section class="card-container">
-
-                <div class="task-box active">
-                </div>
-
-                <div class="project-box">
-                </div>
-
-            </section>
-
-        </main>
-    </div>
-    <script src="./javascript/app.js"></script>
+<body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
 </body>
 
 </html>
