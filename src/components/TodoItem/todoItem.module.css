@@ -46,3 +46,7 @@ input[type="checkbox"]:checked {
 input[type="checkbox"]:checked::after {
     visibility: visible;
 }
+
+input[type="checkbox"]:checked  + .listName {
+    text-decoration: line-through;
+}

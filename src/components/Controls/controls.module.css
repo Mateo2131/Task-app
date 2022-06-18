@@ -1,0 +1,24 @@
+.form {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    padding: 2rem;
+    background-color: rgb(37, 39, 60);
+    border-radius: 0.3rem;
+    color: hsl(234, 11%, 52%);
+}
+
+.btn {
+    color: hsl(234, 11%, 52%);
+    border: none;
+    background-color: transparent;
+    font-size: 1.6rem;
+    padding:  0 0.5rem;
+    cursor: pointer;
+}
+
+.active {
+    color: hsl(220, 98%, 61%);
+}
