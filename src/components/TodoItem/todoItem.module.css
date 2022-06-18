@@ -1,0 +1,48 @@
+.listItem {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    height: 60px;
+    padding-inline: 2rem;
+    border-bottom: 1px solid hsl(237, 14%, 26%);
+    font-size: 1.6rem;
+    text-transform: capitalize;
+    position: relative;
+}
+
+.listItem:hover .deleteButton {
+    display: block;
+}
+
+.deleteButton {
+    background: transparent;
+    cursor: pointer;
+    position: absolute;
+    border: none;
+    right: 20px;
+    display: none;
+}
+
+input[type="checkbox"] {
+    appearance: none;
+    width: 30px;
+    height: 30px;
+    border: 1px solid hsl(237, 14%, 26%);
+    border-radius: 50%;
+    cursor: pointer;
+    display: grid;
+    place-content: center;
+}
+
+input[type="checkbox"]::after {
+    content: url(/icon-check.svg);
+    visibility: hidden;
+}
+
+input[type="checkbox"]:checked {
+    background: linear-gradient(hsl(192, 100%, 67%), hsl(280, 87%, 65%));
+}
+
+input[type="checkbox"]:checked::after {
+    visibility: visible;
+}

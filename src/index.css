@@ -12,8 +12,13 @@ html {
 
 body {
   margin: 0;
-  font-family:'Roboto', sans-serif;
+  font-family: 'Josefin Sans', sans-serif;
   font-size: 1.6rem;
   color: #fff;
-  background-color: #282c34;
+  background-color: #161722;
+}
+
+ul,
+li {
+  list-style: none;
 }

@@ -1,0 +1,17 @@
+.todoInput {
+    height: 50px;
+    padding-inline: 1rem;
+    width: 100%;
+    border-radius: .3rem;
+    border: 1px solid transparent;
+    background-color: rgb(37, 39, 60);
+    color: hsl(234, 39%, 85%);
+    font-size: 1.6rem;
+    outline: none;
+    text-align: center;
+}
+
+.todoInput::placeholder {
+    color: hsl(234, 39%, 85%);
+    text-align: center;
+}

@@ -1,0 +1,11 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 3rem;
+}
+
+.headerTitle {
+    font-size: 3rem;
+    letter-spacing: .8rem;
+}
